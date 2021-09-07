@@ -13,8 +13,8 @@ namespace ConsoleUI
             //9.gün izle;
             //CarTest();
             //BrandTest();
-            ColorTest();
-            ColorAdd();
+            CarTest();
+            //ColorAdd();
 
         }
 
@@ -56,7 +56,10 @@ namespace ConsoleUI
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success==true)
+            {
+                foreach (var car in result.Data)
             {
                 Console.WriteLine("ID: " + car.Id);
                 Console.WriteLine("BrandId: " + car.BrandId);
@@ -65,7 +68,15 @@ namespace ConsoleUI
                 Console.WriteLine("DailyPrice: " + car.DailyPrice);
                 Console.WriteLine("Description: " + car.Description);
                 Console.WriteLine("Description: " + car.BrandName);
+                Console.WriteLine("");
             }
+
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            
             
         }
     }
