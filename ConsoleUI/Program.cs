@@ -21,6 +21,17 @@ namespace ConsoleUI
             Console.WriteLine("");
             CustomerTest();
             //ColorAdd();
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Add(new Rental { CarId=1,CustomerId=1,RentDate=DateTime.Now.Date });
+
+            if (result.Success)
+            {
+                System.Console.WriteLine(result.Message);
+            }
+            else
+            {
+                System.Console.WriteLine(result.Message);
+            }
 
 
         }
