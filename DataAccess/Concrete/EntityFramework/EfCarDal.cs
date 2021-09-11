@@ -11,11 +11,11 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : EfEntityRepositoryBase<Car, NorthwindContext>, ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car, ReCapContext>, ICarDal
     {
         public List<CarDetailDto> GetCarDetails()
         {
-            using (NorthwindContext context=new NorthwindContext())
+            using (ReCapContext context=new ReCapContext())
             {
                 var result = from p in context.Car
                              join c in context.Brand
@@ -30,6 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear=p.ModelYear,
                                  DailyPrice=p.DailyPrice,
                                  Description=p.Description
+                                
                                  
                              };
                 return result.ToList();
