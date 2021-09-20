@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -18,18 +19,27 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        ILogger _logger;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal,ILogger logger)
         {
             _carDal = carDal;
+            _logger = logger;
         }
 
-        [ValidationAspect(typeof(CarValidator))]
+        //[ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            ValidationTool.Validate(new CarValidator(), car);
+            if (CheckCategory(car.Id).Success)
+            {
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
+
+            }
+
+            return new ErrorResult();
+
+            
             
         }
 
@@ -72,6 +82,16 @@ namespace Business.Concrete
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
+        }
+
+        private IResult CheckCategory(int categoryId)
+        {
+            var result = _carDal.GetAll(p => p.Id == categoryId).Count;
+            if (result>=5)
+            {
+                return new ErrorResult(Messages.CarNameInvalid);
+            }
+            return new SuccessResult();
         }
     }
 }

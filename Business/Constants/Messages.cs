@@ -38,6 +38,38 @@ namespace Business.Constants
         public static string RentalUpdated = "Kiralama güncellendi";
         public static string RentalNameInvalid = "Kiralama ismi geçersiz";
         public static string RentalListed = "Kiralamalar listelendi";
+        public static string ImageAdded = "Resim eklendi";
+        
+        public static string CarIsNotAvailable = "Bu Araç Mevcut Değil";
+
+        public static string BrandIsNotInvalid = "Marka Geçersiz";
+        
+        public static string BrandIsNotAvailable = "Marka Mevcut Değil";
+
+        public static string ColorIsNotInvalid = "Renk Geçersiz";
+        
+        public static string ColorIsNotAvailable = "Renk Mevcut Değil";
+
+        public static string CustomerIsNotInvalid = "Müşteri Geçersiz";
+        
+        public static string CustomerIsNotAvailable = "Müşteri Mevcut Değil";
+
+        public static string UserIsNotInvalid = "Kullanıcı Geçersiz";
+        
+        public static string UserIsNotAvailable = "Kullanıcı Mevcut Değil";
+
+
+        
+        public static string RentalIsNotAvailable = "Kiralama Mevcut Değil";
+
+        public static string ImageLimitExceded = "Bir Araç İçin En Fazla 5 Fotoğraf Olabilir.";
+        public static string ImageUpdated = "Araç Resmi Güncellendi";
+        public static string ImageDeleted = "Araç Resmi Silindi";
+        public static string ImageListed = "Araç Resmi Listelendi";
+
+
+
+
 
     }
 }
